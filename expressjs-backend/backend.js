@@ -89,6 +89,27 @@ app.post("/delete", async (req, res) => {
   }
 });
 
+app.post("/deleteItem", async (req, res) => {
+  console.log("BACKEND")
+  const userEmail = req.body.email;
+  const itemName = req.body.item;
+  console.log(itemName);
+  const check = await userServices.checkUserByEmail(userEmail);
+  const check2 = await itemServices.checkItem(itemName);
+  if (check && check2) {
+    res.status(200).send("user or item does not exists");
+  } else {
+    const itemToDelete = await itemServices.findItemByName(itemName);
+    console.log(itemToDelete);
+    const deletedItem = await itemServices.findItemByIDAndDelete(
+      itemToDelete[0].id
+    );
+    if (deletedItem) {
+      res.status(201).send(deletedItem);
+    } else res.status(400).end();
+  }
+});
+
 app.get("/searchItems", async (req, res) => {
   const query = {
     itemName: req.query["query"],

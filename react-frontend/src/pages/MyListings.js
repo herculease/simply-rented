@@ -1,10 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import ItemCardOwner from "./ItemCardOwner";
 
 export function MyListings(props) {
-  const navigate = useNavigate();
   const userEmail = props.getUser();
   const [itemData, setItems] = useState("");
 
@@ -34,8 +32,13 @@ export function MyListings(props) {
     });
   }, []);
 
-  var items = JSON.stringify(itemData)
+  //var items = JSON.stringify(itemData)
 
+  const items = itemData
+    ? itemData.map((data, i) => {
+        return <ItemCardOwner key={i} user={userEmail} title={data.itemName} />;
+      })
+    : null;
 
   return (
     <div className="container">

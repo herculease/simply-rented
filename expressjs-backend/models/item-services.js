@@ -16,6 +16,10 @@ async function addItem(item) {
   }
 }
 
+async function checkItem(item) {
+  return ItemModel.find({ item }).count() > 0;
+}
+
 async function findItemByName(item) {
   const result = await ItemModel.find({ itemName: item });
   return result;
@@ -60,3 +64,4 @@ exports.finditemByIDAndDelete = findItemByIDAndDelete;
 exports.findItemByName = findItemByName;
 exports.addItem = addItem;
 exports.findItemsByOwner = findItemsByOwner;
+exports.checkItem = checkItem;
