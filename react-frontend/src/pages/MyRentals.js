@@ -27,7 +27,7 @@ export function MyRentals(props) {
     <div className="container">
       {user ? (
         <>
-          <h1 className="pb-3">My Rentals</h1>
+          <h1 className="pb-5 display-3">My Rentals</h1>
           <div className="row">
             <ItemList
               getResponse={getRentalsByUser(user)}

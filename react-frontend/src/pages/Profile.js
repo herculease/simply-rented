@@ -60,7 +60,7 @@ export default function Profile(props) {
     <div className="container">
       {user ? (
         <>
-          <h1 className="pb-3">My Profile</h1>
+          <h1 className="pb-3 display-3">My Profile</h1>
           <div class="card">
             <div class="card-body">
               <h3 class="card-title">Contact Information</h3>
