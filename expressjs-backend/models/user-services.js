@@ -87,7 +87,7 @@ async function addUser(user) {
   try {
     const userToAdd = new UserModel(user);
     userToAdd.password = await bcrypt.hash(userToAdd.password, 10);
-    const savedUser = userToAdd.save();
+    const savedUser = await userToAdd.save();
     return savedUser;
   } catch (error) {
     console.log(error);

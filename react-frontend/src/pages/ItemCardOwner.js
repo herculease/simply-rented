@@ -65,8 +65,6 @@ export default function ItemCard(props) {
           <h5 className="card-title">{props.title}</h5>
         </div>
       </Link>
-      <p>{props.title}</p>
-      <p>{props.user}</p>
       <button
               className="btn btn-lg btn-danger"
               onClick={() => deleteItem(props.title, props.user)}
