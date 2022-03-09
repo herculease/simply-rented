@@ -1,5 +1,4 @@
 const myFunctions = require("./user-services.js");
-const ObjectId = require('mongodb').ObjectID;
 
 const testUser = {
   firstName: "jest_user",
@@ -30,11 +29,6 @@ test("Testing Find User by Name -- Success", async () => {
   expect(result.firstName).toBe(target.firstName);
   expect(result.lastName).toBe(target.lastName);
   expect(result.email).toBe(target.email);
-});
-
-test("Testing Find User by Name -- Failure", async () => {
-  const result_list = await myFunctions.findUserByName("AppleJuiceFailure");
-  expect(result_list).toStrictEqual([]);
 });
 
 test("Testing Find User by Email -- Success", async () => {
@@ -70,6 +64,21 @@ test("Testing Get Users -- Defined Email", async () => {
   expect(result.email).toBe(target.email);
 });
 
+test("Testing Check User By Email Password", async () => {
+  const result = await myFunctions.checkUserByEmail("AppleJuiceFailure", "FailurePassword");
+  expect(result).toBeFalsy();
+});
+
+test("Testing Verify User -- Undefined", async () => {
+  const result = await myFunctions.verifyUser();
+  expect(result).toBeFalsy();
+})
+
+test("Testing Verify User -- Defined", async () => {
+  const result = await myFunctions.verifyUser("AppleJuiceFailure", "FailurePassword");
+  expect(result).toBeFalsy();
+})
+
 test("Testing Find User by ID and Delete -- Success", async () => {
   const user = await myFunctions.findUserByName("jest_user");
   const id = user[0].id;
@@ -81,7 +90,7 @@ test("Testing Find User by ID and Delete -- Success", async () => {
 });
 
 test("Testing Find User by ID and Delete -- Failure", async () => {
-  const badID = new ObjectId("6228491ef534781215e869f6");
-  const result = await myFunctions.findUserByIDAndDelete(badID);
+  const result = await myFunctions.findUserByIDAndDelete();
+  console.log(result);
   expect(result).toBeFalsy();
 });
