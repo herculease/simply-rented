@@ -63,19 +63,19 @@ export default function Profile(props) {
           <h1 className="pb-3 display-3">My Profile</h1>
           <div class="card">
             <div class="card-body">
-              <h3 class="card-title">Contact Information</h3>
+              <h3 class="card-title"><u>Contact Information</u></h3>
               <br></br>
               <h4 class="card-text">First Name</h4>
               <p class="card-text" id="first" style={{ fontSize: 20 }}>
-                {userData.firstName}
+                <i>{userData.firstName}</i>
               </p>
               <h4 class="card-text">Last Name</h4>
               <p class="card-text" id="last" style={{ fontSize: 20 }}>
-                {userData.lastName}
+                <i>{userData.lastName}</i>
               </p>
               <h4 class="card-text">Email</h4>
               <p class="card-text" id="email" style={{ fontSize: 20 }}>
-                {user}
+                <i>{user}</i>
               </p>
             </div>
           </div>
